@@ -185,6 +185,21 @@ in
     unstable.nerd-fonts.fira-code
     vscode
     zed-editor
+
+    gcc
+    clang
+    gnumake
+    plocate
+    cmake
+    gdb
+    pkg-config
+    zlib
+
+    (python312.withPackages (ps: with ps; [
+      pip
+      setuptools
+      wheel
+    ]))
   ];
 
   # Some programs need SUID wrappers, can be configured further or are
