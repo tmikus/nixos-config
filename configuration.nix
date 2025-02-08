@@ -86,7 +86,15 @@ in
   };
 
   # Enable the X11 windowing system.
-  services.xserver.enable = true;
+  services.xserver = {
+    enable = true;
+    # Configure keymap in X11
+    xkb = {
+      layout = "gb";
+      variant = "";
+      options = "repeat:delay=250, repeat:rate=30";
+    };
+  };
 
   # Enable the GNOME Desktop Environment.
   # services.xserver.displayManager.gdm.enable = true;
@@ -105,12 +113,6 @@ in
   # Enable the KDE environment
   services.displayManager.sddm.enable = true;
   services.desktopManager.plasma6.enable = true;
-
-  # Configure keymap in X11
-  services.xserver.xkb = {
-    layout = "gb";
-    variant = "";
-  };
 
   # Configure console keymap
   console.keyMap = "uk";
