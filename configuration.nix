@@ -12,7 +12,7 @@ in
   imports = [
     (import "${home-manager}/nixos")
     # Include the results of the hardware scan.
-    ./hardware-configuration.nix
+    /etc/nixos/hardware-configuration.nix
   ];
 
   # Bootloader.
@@ -89,18 +89,22 @@ in
   services.xserver.enable = true;
 
   # Enable the GNOME Desktop Environment.
-  services.xserver.displayManager.gdm.enable = true;
-  services.xserver.desktopManager.gnome = {
-    enable = true;
-    extraGSettingsOverridePackages = [ pkgs.mutter ];
-    extraGSettingsOverrides = ''
-      [org.gnome.mutter]
-      experimental-features=['scale-monitor-framebuffer']
+  # services.xserver.displayManager.gdm.enable = true;
+  # services.xserver.desktopManager.gnome = {
+  #   enable = true
+  #   extraGSettingsOverridePackages = [ pkgs.mutter ];
+  #   extraGSettingsOverrides = ''
+  #     [org.gnome.mutter]
+  #     experimental-features=['scale-monitor-framebuffer']
       
-      [org.gnome.desktop.interface]
-      gtk-theme="Adwaita-dark"
-    '';
-  };
+  #     [org.gnome.desktop.interface]
+  #     gtk-theme="Adwaita-dark"
+  #   '';
+  # };
+
+  # Enable the KDE environment
+  services.displayManager.sddm.enable = true;
+  services.desktopManager.plasma6.enable = true;
 
   # Configure keymap in X11
   services.xserver.xkb = {
@@ -174,9 +178,9 @@ in
   #  vim # Do not forget to add an editor to edit configuration.nix! The Nano editor is also installed by default.
   #  wget
     firefox-devedition-bin
-    unstable.nerd-fonts.fira-code
-    unstable.ghostty
     git
+    jetbrains-toolbox
+    unstable.nerd-fonts.fira-code
     vscode
     zed-editor
   ];
