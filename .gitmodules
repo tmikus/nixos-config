@@ -1,0 +1,3 @@
+[submodule "home-manager-config"]
+	path = home-manager-config
+	url = https://github.com/tmikus/home-manager-config.git
