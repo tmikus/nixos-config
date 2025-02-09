@@ -182,6 +182,7 @@ in
     firefox-devedition-bin
     git
     jetbrains-toolbox
+    spotify
     unstable.nerd-fonts.fira-code
     vscode
     zed-editor
