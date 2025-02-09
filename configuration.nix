@@ -46,14 +46,16 @@ in
     LC_TIME = "en_GB.UTF-8";
   };
 
+  # Enable Bluetooth
+  hardware.bluetooth.enable = true; # enables support for Bluetooth
+  hardware.bluetooth.powerOnBoot = true; # powers up the default Bluetooth controller on boot
+
   # Enable OpenGL
   hardware.graphics = {
     enable = true;
   };
-
   # Load nvidia driver for Xorg and Wayland
   services.xserver.videoDrivers = ["nvidia"];
-
   hardware.nvidia = {
     # Modesetting is required.
     modesetting.enable = true;
@@ -120,7 +122,7 @@ in
   services.printing.enable = true;
 
   # Enable sound with pipewire.
-  hardware.pulseaudio.enable = false;
+  services.pulseaudio.enable = false;
   security.rtkit.enable = true;
   services.pipewire = {
     enable = true;
@@ -175,20 +177,20 @@ in
   #  wget
     firefox-devedition-bin
     git
+    httpie-desktop
     jetbrains-toolbox
     spotify
     nerd-fonts.fira-code
     vscode
     zed-editor
 
-    gcc
-    libgcc
     clang
     gnumake
     plocate
     cmake
     extra-cmake-modules
     gdb
+    openssl
     pkg-config
     zlib
 
@@ -202,7 +204,7 @@ in
     podman-desktop # GUI for Podman
     podman-tui # status of containers in the terminal
     docker-compose # start group of containers for dev
-    #podman-compose # start group of containers for dev
+    podman-compose # start group of containers for dev
   ];
 
   # Enable common container config files in /etc/containers
