@@ -5,8 +5,7 @@
 { config, pkgs, ... }:
 
 let 
-  home-manager = builtins.fetchTarball "https://github.com/nix-community/home-manager/archive/release-24.11.tar.gz";
-  unstableTarball = builtins.fetchTarball "https://github.com/NixOS/nixpkgs/archive/nixos-unstable.tar.gz";
+  home-manager = builtins.fetchTarball "https://github.com/nix-community/home-manager/archive/master.tar.gz";
 in
 {
   imports = [
@@ -167,11 +166,6 @@ in
   nixpkgs.config = {
     # Allow unfree packages
     allowUnfree = true;
-    packageOverrides = pkgs: {
-      unstable = import unstableTarball {
-        config = config.nixpkgs.config;
-      };
-    };
   };
 
   # List packages installed in system profile. To search, run:
@@ -183,7 +177,7 @@ in
     git
     jetbrains-toolbox
     spotify
-    unstable.nerd-fonts.fira-code
+    nerd-fonts.fira-code
     vscode
     zed-editor
 
