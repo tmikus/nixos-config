@@ -140,6 +140,12 @@ in
   # Enable touchpad support (enabled default in most desktopManager).
   # services.xserver.libinput.enable = true;
 
+  # Enable locate
+  services.locate = {
+    enable = true;
+    package = pkgs.plocate;
+  };
+
   users.defaultUserShell = pkgs.zsh;
 
   # Define a user account. Don't forget to set a password with ‘passwd’.
