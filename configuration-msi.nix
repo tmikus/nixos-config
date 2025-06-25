@@ -10,27 +10,29 @@
   ];
 
   # Bootloader.
-  boot.loader = {
-    efi.canTouchEfiVariables = true;
-    grub = {
-      enable = true;
-      devices = [ "nodev" ];
-      default = "saved";
-      efiSupport = true;
-      useOSProber = true;
+  boot.loader.systemd-boot.enable = true;
+  boot.loader.efi.canTouchEfiVariables = true;
+
+  networking.hostName = "nixos-msi";
+
+  # Enable the X11 windowing system.
+  services.xserver = {
+    enable = true;
+    # Configure keymap in X11
+    xkb = {
+      layout = "us";
+      variant = "";
+      options = "repeat:delay=250, repeat:rate=30";
     };
   };
 
-  networking.hostName = "nixos-desktop";
-  # networking.wireless.enable = true;  # Enables wireless support via wpa_supplicant.
-
-  # Configure network proxy if necessary
-  # networking.proxy.default = "http://user:password@proxy:port/";
-  # networking.proxy.noProxy = "127.0.0.1,localhost,internal.domain";
+  # Configure console keymap
+  console.keyMap = "us";
 
   # Enable Bluetooth
   hardware.bluetooth.enable = true; # enables support for Bluetooth
   hardware.bluetooth.powerOnBoot = true; # powers up the default Bluetooth controller on boot
+
 
   # Enable OpenGL
   hardware.graphics = {
@@ -67,19 +69,11 @@
 
     # Optionally, you may need to select the appropriate driver version for your specific GPU.
     package = config.boot.kernelPackages.nvidiaPackages.stable;
-  };
 
-  # Enable the X11 windowing system.
-  services.xserver = {
-    enable = true;
-    # Configure keymap in X11
-    xkb = {
-      layout = "gb";
-      variant = "";
-      options = "repeat:delay=250, repeat:rate=30";
+    prime = {
+      offload.enable = true;
+      intelBusId = "PCI:0:2:0";
+      nvidiaBusId = "PCI:90:0:0";
     };
   };
-
-  # Configure console keymap
-  console.keyMap = "uk";
 }
