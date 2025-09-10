@@ -12,9 +12,6 @@ in
     (import "${home-manager}/nixos")
   ];
 
-  # Use latest kernel.
-  boot.kernelPackages = pkgs.linuxPackages_latest;
-
   # Enable networking
   networking.networkmanager.enable = true;
 
@@ -112,12 +109,10 @@ in
       enableWideVine = true;
     })
     ente-auth
-    firefox-devedition-bin
     ghostty
     git
     httpie-desktop
     jetbrains-toolbox
-    spotify
     nerd-fonts.fira-code
     vscode
     zed-editor
