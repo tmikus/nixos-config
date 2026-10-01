@@ -120,7 +120,6 @@ in
     httpie-desktop
     jetbrains-toolbox
     nerd-fonts.fira-code
-    vscode
     zed-editor
 
     clang
