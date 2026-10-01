@@ -121,6 +121,8 @@ in
     jetbrains-toolbox
     nerd-fonts.fira-code
     zed-editor
+    # nixpkgs installs the Zed CLI as `zeditor`; expose it as `zed` too
+    (writeShellScriptBin "zed" ''exec ${zed-editor}/bin/zeditor "$@"'')
 
     clang
     gcc
