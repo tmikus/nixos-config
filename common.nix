@@ -5,12 +5,15 @@
 { config, pkgs, ... }:
 
 let
-  home-manager = builtins.fetchTarball "https://github.com/nix-community/home-manager/archive/master.tar.gz";
+  home-manager = builtins.fetchTarball "https://github.com/nix-community/home-manager/archive/release-26.05.tar.gz";
 in
 {
   imports = [
     (import "${home-manager}/nixos")
   ];
+
+  # Fix a problem with Nix 26.05
+  documentation.doc.enable = false;
 
   # Enable networking
   networking.networkmanager.enable = true;
@@ -91,6 +94,9 @@ in
     polkitPolicyOwners = ["tmikus"];
   };
 
+  # Needed to install Claude code
+  programs.nix-ld.enable = true;
+
   programs.partition-manager.enable = true;
 
   nixpkgs.config = {
@@ -122,7 +128,7 @@ in
     gnumake
     plocate
     cmake
-    extra-cmake-modules
+    kdePackages.extra-cmake-modules
     gdb
     openssl
     pkg-config
